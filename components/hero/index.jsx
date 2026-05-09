@@ -38,7 +38,7 @@ export default function Hero() {
 
           <a 
             href="#sobre"
-            className="bg-transparent text-white font-medium px-6 py-2 rounded-full border-2 border-white/50 transition-all duration-300 ease-in-out hover:border-white hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] hover:scale-105 active:scale-95 text-center"
+            className="bg-transparent text-white font-medium px-6 py-2 rounded-full border-2 border-white/50 transition-all duration-300 ease-in-out hover:border-white hover:text-white hover:shadow-[0_0_15px_rgba(255,255,255,0.5)] hover:scale-105 active:scale-95 text-center backdrop-blur-sm"
           >
             Sobre mim
           </a>
