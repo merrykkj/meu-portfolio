@@ -20,7 +20,7 @@ export default function FunctionBanner() {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.3, ease: "easeOut" }}
-        className="hidden md:block absolute bottom-0 right-0 h-full w-auto object-contain z-10"
+        className="hidden md:block absolute bottom-0 right-0 h-full w-auto object-contain z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]"
       />
 
       <div

@@ -8,18 +8,19 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <div className="relative w-full h-screen">
+        <section id="hero" className="relative w-full h-screen">
           <Banner />
           <div className="absolute inset-0 z-30 pointer-events-none container mx-auto px-8 pt-24">
             <div className="pointer-events-auto">
               <Hero />
             </div>
           </div>
-        </div>
+        </section>
 
-        <About /> 
+        <section id="sobre">
+          <About /> 
+        </section>
       </main>
     </>
   );
 }
-
