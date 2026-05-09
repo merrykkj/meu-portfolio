@@ -1,21 +1,25 @@
 import Banner from '../components/banner'
 import Header from '../components/header'
-import Hero from '../components/hero';
-import IntroOverlay from '../components/intro';
+import Hero from '../components/hero'
+import About from '../components/about'
+
 export default function Home() {
   return (
     <>
+      <Header />
+      <main>
+        <div className="relative w-full h-screen">
+          <Banner />
+          <div className="absolute inset-0 z-30 pointer-events-none container mx-auto px-8 pt-24">
+            <div className="pointer-events-auto">
+              <Hero />
+            </div>
+          </div>
+        </div>
 
-   <Header/>
-
-    <main>
-    <Banner/>
-    <IntroOverlay/>
-    <div class="absolute inset-0 flex items-center justify-center">
-    <Hero/>
-    </div>
-
-    </main>
+        <About /> 
+      </main>
     </>
   );
 }
+
