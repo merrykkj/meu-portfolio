@@ -3,7 +3,7 @@
 Este é o meu portfólio pessoal desenvolvido com o objetivo de unir design temático e tecnologias modernas de desenvolvimento front-end. A interface foi inteiramente inspirada na estética da obra Demon Slayer, utilizando elementos visuais que remetem ao universo da série.
 
 ## Intenção do Projeto
-O projeto foi construído por Vitoria com o intuito de demonstrar habilidades em composição de layout e animações complexas. A escolha do tema permitiu explorar o uso estratégico de cores e iluminação para criar uma experiência de usuário imersiva e diferenciada.
+Desenvolvi este projeto com o intuito de demonstrar minhas habilidades em composição de layout e animações complexas. A escolha do tema me permitiu explorar o uso estratégico de cores e iluminação para criar uma experiência de usuário imersiva e diferenciada.
 
 ## Tecnologias Utilizadas
 - **Next.js:** Framework base para a construção da aplicação.
