@@ -5,22 +5,22 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState('hero')
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'sobre', 'contato']
-      
-      sections.forEach(id => {
-        const element = document.getElementById(id)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            setActiveSection(id)
-          }
-        }
-      })
-    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { threshold: 0.5 }
+    )
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const sections = ['hero', 'sobre', 'contato']
+    sections.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
   }, [])
 
   const colors = {
@@ -29,39 +29,27 @@ export default function Header() {
     contato: 'hover:text-pink-500 hover:drop-shadow-[0_0_10px_#ec4899]'
   }
 
-  const currentHover = colors[activeSection] || colors.hero
+  const hoverStyle = colors[activeSection]
 
   return (
-    <header className="fixed top-0 left-0 w-full h-12 py-3 backdrop-blur-md z-[999] bg-black/50">
+    <header className="fixed top-0 w-full h-12 py-3 backdrop-blur-md z-[999] bg-black/50">
       <nav aria-label="Navegação principal">
         <ul className="flex justify-center gap-7 text-white font-[family-name:var(--font-shojumaru)]">
-          <li>
-            <a 
-              href="/" 
-              aria-current={activeSection === 'hero' ? 'page' : undefined}
-              className={`${currentHover} transition-all duration-300 hover:scale-110 block`}
-            >
-              Home
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#sobre" 
-              aria-current={activeSection === 'sobre' ? 'page' : undefined}
-              className={`${currentHover} transition-all duration-300 hover:scale-110 block`}
-            >
-              Sobre
-            </a>
-          </li>
-          <li>
-            <a 
-              href="#contato" 
-              aria-current={activeSection === 'contato' ? 'page' : undefined}
-              className={`${currentHover} transition-all duration-300 hover:scale-110 block`}
-            >
-              Contato
-            </a>
-          </li>
+          {['home', 'sobre', 'contato'].map((item) => {
+            const isActive = item === 'home' ? activeSection === 'hero' : activeSection === item;
+
+            return (
+              <li key={item}>
+                <a
+                  href={item === 'home' ? '/' : `#${item}`}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`${hoverStyle} transition-all duration-300 hover:scale-110 block capitalize`}
+                >
+                  {item}
+                </a>
+              </li>
+            )
+          })}
         </ul>
       </nav>
     </header>
