@@ -36,7 +36,7 @@ export default function Header() {
     <header className="fixed top-0 w-full h-12 py-3 backdrop-blur-md z-[999] bg-black/50">
       <nav aria-label="Navegação principal">
         <ul className="flex justify-center gap-7 text-white font-[family-name:var(--font-shojumaru)]">
-          {['hero', 'sobre', 'contato'].map((item) => {
+          {['home', 'sobre', 'contato'].map((item) => {
             const isActive = item === 'home' ? activeSection === 'hero' : activeSection === item;
 
             return (
