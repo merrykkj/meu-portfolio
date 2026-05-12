@@ -5,12 +5,12 @@ export default function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="w-full py-10 bg-[#1a0f05] border-t border-white/5">
+        <footer className="w-full py-10 bg-black border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
                 
 
                 <div className="text-center md:text-left">
-                    <h2 className="text-red-500 text-xl font-black uppercase italic tracking-tighter">
+                    <h2 className="text-purple-500 text-xl font-black uppercase italic tracking-tighter">
                         Vitória
                     </h2>
                     <p className="text-gray-500 text-xs mt-1 uppercase tracking-widest font-bold">
@@ -21,7 +21,7 @@ export default function Footer() {
 
                 <nav className="flex gap-8">
                     <motion.a 
-                        whileHover={{ scale: 1.1, color: '#fbbf24' }}
+                        whileHover={{ scale: 1.1, color: '#a524fb' }}
                         href="https://github.com/merrykkj" 
                         target="_blank"
                         className="text-gray-400 transition-colors"
@@ -31,7 +31,7 @@ export default function Footer() {
                     </motion.a>
 
                     <motion.a 
-                        whileHover={{ scale: 1.1, color: '#fbbf24' }}
+                        whileHover={{ scale: 1.1, color: '#a524fb' }}
                         href="https://linkedin.com" 
                         target="_blank"
                         className="text-gray-400 transition-colors"
@@ -41,7 +41,7 @@ export default function Footer() {
                     </motion.a>
 
                     <motion.a 
-                        whileHover={{ scale: 1.1, color: '#fbbf24' }}
+                        whileHover={{ scale: 1.1, color: '#a524fb' }}
                         href="mailto:vlucena170@gmail.com" 
                         className="text-gray-400 transition-colors"
                         aria-label="E-mail"
