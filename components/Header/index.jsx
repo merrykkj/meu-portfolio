@@ -14,7 +14,7 @@ export default function Header() {
       { threshold: 0.5 }
     )
 
-    const sections = ['hero', 'sobre', 'contato']
+    const sections = ['hero', 'sobre', 'contato', 'projetos']
     sections.forEach((id) => {
       const el = document.getElementById(id)
       if (el) observer.observe(el)
@@ -36,7 +36,7 @@ export default function Header() {
     <header className="fixed top-0 w-full h-12 py-3 backdrop-blur-md z-[999] bg-black/50">
       <nav aria-label="Navegação principal">
         <ul className="flex justify-center gap-7 text-white font-[family-name:var(--font-shojumaru)]">
-          {['home', 'sobre', 'contato'].map((item) => {
+          {['home', 'sobre', 'projetos', 'contato'].map((item) => {
             const isActive = item === 'home' ? activeSection === 'hero' : activeSection === item;
 
             return (

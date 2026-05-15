@@ -84,7 +84,7 @@ export default function Hero() {
                   alt={`Logo ${tech.name}`}
                   title={tech.name}
                   whileHover={{ scale: 1.25, y: -5 }}
-                  className="h-8 md:h-9 opacity-50 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+                  className="h-8 md:h-9 opacity-100 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]"
                 />
               </li>
             ))}

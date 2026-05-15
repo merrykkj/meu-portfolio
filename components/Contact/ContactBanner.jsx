@@ -8,11 +8,11 @@ export default function ContactBanner() {
         src="/akaza5.jpg"
         alt=""
         initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 1, scale: 1 }}
+        animate={{ opacity:  0.9, scale: 1 }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
         className="absolute inset-0 w-full h-full object-cover z-10"
       />
-      <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/70 via-transparent to-black/60" />
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/90 via-transparent to-black/60" />
     </div>
   )
 }

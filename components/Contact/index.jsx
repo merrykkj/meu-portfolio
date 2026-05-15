@@ -115,7 +115,7 @@ export default function Contact() {
 
                             <button
                                 disabled={status === 'loading'}
-                                className="w-full bg-purple-600 hover:bg-purple-500 text-white py-4 rounded-xl font-black text-xl transition-all shadow-[0_0_15px_rgba(147,51,234,0.4)] hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] uppercase tracking-tighter disabled:opacity-50"
+                                className="w-full bg-purple-600 hover:bg-purple-500 hover:scale-105 text-white py-4 rounded-xl font-black text-xl transition-all shadow-[0_0_15px_rgba(147,51,234,0.4)] hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] uppercase tracking-tighter disabled:opacity-50"
                             >
                                 {status === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
                             </button>
