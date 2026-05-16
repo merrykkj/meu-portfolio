@@ -19,7 +19,7 @@ export default function About() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-xl p-10 md:p-14 bg-black/80 border border-white/10 backdrop-blur-3xl rounded-[3rem] shadow-2xl">        
+                    className="max-w-xl p-10 md:p-14 bg-black/80 border border-white/10 backdrop-blur-3xl rounded-[3rem] shadow-2xl">
 
                     <header className="relative mb-8 md:mb-10">
                         <motion.div
@@ -55,7 +55,29 @@ export default function About() {
                         </p>
                     </div>
 
-                    <footer className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
+                    <div className="mt-8 flex justify-center md:justify-start">
+                        <motion.a
+                            href="/curriculo-vitoria.pdf" 
+                            download="Curriculo_Vitoria.pdf" 
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-xs md:text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-[0_4px_20px_rgba(245,158,11,0.3)] hover:shadow-[0_4px_25px_rgba(245,158,11,0.5)] transition-all cursor-pointer"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={2.5}
+                                stroke="currentColor"
+                                className="w-4 h-4 md:w-5 md:h-5"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                            Baixar Currículo
+                        </motion.a>
+                    </div>
+
+                    <footer className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
                         <div className="flex items-center gap-3">
                             <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-40" />

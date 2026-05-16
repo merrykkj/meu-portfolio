@@ -7,14 +7,14 @@ export default function AboutBanner() {
       className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-30"
       aria-hidden="true"
     >
-      <div className="max-w-[1400px] mr-auto w-full h-full relative">
+      <div className="w-full h-full relative">
         <motion.img
           src="/zenitsu7.png"
           alt=""
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 0.7 }}
           transition={{ duration: 1.3, ease: 'easeOut' }}
-          className="hidden md:block absolute bottom-0 left-0 h-[50rem] max-h-[85vh] lg:max-h-[100vh] w-auto object-contain drop-shadow-[0_0_20px_rgba(250,204,21,0.6)]"
+          className="hidden lg:block absolute bottom-0 left-0 h-full w-auto object-contain object-left-bottom drop-shadow-[0_0_20px_rgba(250,204,21,0.6)]"
         />
       </div>
 

@@ -84,22 +84,22 @@ export default function Hero() {
                   alt={`Logo ${tech.name}`}
                   title={tech.name}
                   whileHover={{ scale: 1.25, y: -5 }}
-                  className="h-8 md:h-9 opacity-100 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+                  className="h-8 md:h-9 invert opacity-75 hover:invert-0 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
                 />
               </li>
             ))}
 
-            <li className="relative group">
+            <li className="relative flex flex-col items-center group">
+              <span className="absolute -top-5 text-[9px] bg-purple-600 px-2 py-0.5 rounded-full text-white font-black shadow-md border border-purple-400 animate-bounce z-20 whitespace-nowrap">
+                START
+              </span>
               <motion.img
                 src="/java.png"
                 alt="Logo Java"
                 title="Estudando Java"
                 whileHover={{ scale: 1.25, y: -5 }}
-                className="h-8 md:h-9 opacity-50 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]"
+                className="h-8 md:h-9 opacity-50 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
               />
-              <span className="absolute -top-3 -right-3 text-[8px] bg-purple-600 px-2 py-0.5 rounded-full text-white font-black shadow-lg border border-purple-400 animate-bounce">
-                START
-              </span>
             </li>
           </ul>
         </div>
