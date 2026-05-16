@@ -45,9 +45,6 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full md:h-12 py-3 backdrop-blur-md z-[999] bg-black/50 transition-all duration-300">
       <nav aria-label="Navegação principal" className="container mx-auto px-6 flex items-center justify-between md:justify-center">
         
-        <div className="text-white font-[family-name:var(--font-shojumaru)] text-sm md:hidden select-none">
-          Vitória Pereira
-        </div>
 
         <button
           onClick={() => setIsOpen(!isOpen)}
