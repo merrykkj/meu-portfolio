@@ -44,17 +44,6 @@ export default function Projects() {
         <section id='projetos' className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-pink-500 via-pink-600 to-pink-900 px-6 py-20">
             <ProjectsBanner />
 
-            <div className="absolute inset-0 z-0 h-full w-full pointer-events-none select-none overflow-hidden">
-                <motion.img
-                    src="/mitsuri.png"
-                    alt=""
-                    initial={{ x: 100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 0.8 }}
-                    transition={{ duration: 1.3, ease: 'easeOut' }}
-                    className="h-full w-full object-cover object-center scale-105"
-                />
-            </div>
-
             <header className="relative z-40 mb-20 text-center select-none">
                 <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase italic tracking-tighter bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400 text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.25)]">
                     Projetos
