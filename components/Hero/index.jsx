@@ -70,7 +70,7 @@ export default function Hero() {
             Main Stack & Software Focus
           </h2>
 
-          <ul className="flex flex-wrap justify-center md:justify-start gap-10 items-center list-none p-0">
+          <ul className="flex flex-row flex-wrap justify-center md:justify-start gap-6 sm:gap-10 items-center list-none p-0 w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             {[
               { name: 'Next.js', src: '/nextjs.svg' },
               { name: 'React', src: '/react.svg' },
@@ -78,7 +78,7 @@ export default function Hero() {
               { name: 'Node.js', src: '/nodejs.svg' },
               { name: 'JavaScript', src: '/javascript.svg' }
             ].map((tech) => (
-              <li key={tech.name}>
+              <li key={tech.name} className="shrink-0">
                 <motion.img
                   src={tech.src}
                   alt={`Logo ${tech.name}`}
@@ -89,7 +89,7 @@ export default function Hero() {
               </li>
             ))}
 
-            <li className="relative flex flex-col items-center group">
+            <li className="relative flex flex-col items-center group shrink-0">
               <span className="absolute -top-5 text-[9px] bg-purple-600 px-2 py-0.5 rounded-full text-white font-black shadow-md border border-purple-400 animate-bounce z-20 whitespace-nowrap">
                 START
               </span>

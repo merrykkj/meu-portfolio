@@ -13,6 +13,17 @@ export default function Projects() {
         setIsMounted(true)
     }, [])
 
+    useEffect(() => {
+        if (selectedProject) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [selectedProject])
+
     const projects = [
         {
             id: 1,
@@ -102,108 +113,109 @@ export default function Projects() {
 
             <AnimatePresence>
                 {selectedProject && (
-                    <aside className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+                    <dialog 
+                        open
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-transparent w-full h-full max-w-full max-h-full"
+                    >
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setSelectedProject(null)}
-                            className="absolute inset-0 bg-black/90 backdrop-blur-md"
+                            className="absolute inset-0 bg-black/80 backdrop-blur-md"
                         />
 
-                        <motion.article
+                        <motion.div
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
-                            className="relative flex flex-col w-full max-w-2xl overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/70 backdrop-blur-md shadow-2xl"
+                            transition={{ duration: 0.2 }}
+                            className="relative flex flex-col w-[calc(100%-1rem)] max-w-sm sm:max-w-2xl max-h-[85vh] sm:max-h-[calc(100vh-4rem)] overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/70 backdrop-blur-md shadow-2xl z-10"
                         >
                             <button
                                 onClick={() => setSelectedProject(null)}
-                                className="absolute right-5 top-5 z-50 rounded-full bg-black/40 p-2.5 text-white/70 transition hover:bg-black/70 hover:text-white"
+                                className="absolute right-4 top-4 sm:right-5 sm:top-5 z-50 rounded-full bg-black/60 p-2.5 text-white/70 transition hover:bg-black/80 hover:text-white border border-white/5 backdrop-blur-sm active:scale-95"
+                                aria-label="Fechar modal"
                             >
-                                <span className="block text-sm leading-none">✕</span>
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
                             </button>
 
-                            <figure className="relative h-[260px] w-full overflow-hidden bg-zinc-900 shrink-0 isolate group">
-                                <span className="absolute top-5 left-5 z-30 rounded-md bg-pink-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-[0_4px_12px_rgba(236,72,153,0.4)]">
-                                    {selectedProject.badge}
-                                </span>
+                            <div className="w-full overflow-y-auto overscroll-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                                <figure className="relative h-[180px] sm:h-[260px] w-full overflow-hidden bg-zinc-900 shrink-0 isolate group">
+                                    <span className="absolute top-4 left-4 sm:top-5 sm:left-5 z-30 rounded-md bg-pink-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-[0_4px_12px_rgba(236,72,153,0.4)]">
+                                        {selectedProject.badge}
+                                    </span>
 
-                                <div className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/25 to-transparent z-10 pointer-events-none" />
-                                    <Image
-                                        src={selectedProject.image}
-                                        alt={`Imagem expandida de ${selectedProject.title}`}
-                                        width={800}
-                                        height={450}
-                                        className="h-full w-full object-cover object-top"
-                                    />
-                                </div>
-                            </figure>
+                                    <div className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/25 to-transparent z-10 pointer-events-none" />
+                                        <Image
+                                            src={selectedProject.image}
+                                            alt={`Imagem expandida de ${selectedProject.title}`}
+                                            width={800}
+                                            height={450}
+                                            className="h-full w-full object-cover object-top"
+                                        />
+                                    </div>
+                                </figure>
 
-                            <div className="w-full flex flex-col p-8 sm:p-10">
-                                <div className="flex items-center justify-between gap-4 mb-3">
-                                    <h2 className="text-3xl font-black uppercase italic tracking-tight text-pink-500">
-                                        {selectedProject.title}
-                                    </h2>
-                                    {selectedProject.github && (
-                                        <a
-                                            href={selectedProject.github}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/50 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-zinc-300 transition-all duration-300 hover:border-pink-500/30 hover:bg-pink-600 hover:text-white hover:shadow-[0_0_15px_rgba(236,72,153,0.3)]"
-                                        >
-                                            <svg
-                                                className="h-4 w-4"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
+                                <div className="w-full flex flex-col p-6 sm:p-10">
+                                    <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 sm:mb-3">
+                                        <h2 className="text-2xl sm:text-3xl font-black uppercase italic tracking-tight text-pink-500">
+                                            {selectedProject.title}
+                                        </h2>
+                                        {selectedProject.github && (
+                                            <a
+                                                href={selectedProject.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-zinc-900/50 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-zinc-300 transition-all duration-300 hover:border-pink-500/30 hover:bg-pink-600 hover:text-white hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] w-full sm:w-auto"
                                             >
-                                                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                <path d="M9 18c-4.51 2-5-2-7-2" />
-                                            </svg>
-                                            Ver Repositório
-                                        </a>
-                                    )}
-                                </div>
+                                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
+                                                </svg>
+                                                Ver Repositório
+                                            </a>
+                                        )}
+                                    </header>
 
-                                <p className="mb-8 text-sm leading-relaxed text-zinc-400 font-medium">
-                                    {selectedProject.desc}
-                                </p>
+                                    <p className="mb-6 sm:mb-8 text-xs sm:text-sm leading-relaxed text-zinc-400 font-medium">
+                                        {selectedProject.desc}
+                                    </p>
 
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2 border-t border-zinc-900">
-                                    <div>
-                                        <h4 className="text-zinc-500 text-[11px] font-bold uppercase tracking-widest mb-3">
-                                            Minha Stack (Front-end)
-                                        </h4>
-                                        <ul className="flex flex-wrap gap-1.5">
-                                            {selectedProject.myStack.map((tech) => (
-                                                <li key={tech} className="rounded-lg bg-pink-500/10 border border-pink-500/20 px-2.5 py-1 text-xs font-medium text-pink-400">
-                                                    {tech}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 sm:pt-2 border-t border-zinc-900">
+                                        <div>
+                                            <h3 className="text-zinc-500 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-2 sm:mb-3">
+                                                Minha Stack (Front-end)
+                                            </h3>
+                                            <ul className="flex flex-wrap gap-1.5">
+                                                {selectedProject.myStack.map((tech) => (
+                                                    <li key={tech} className="rounded-lg bg-pink-500/10 border border-pink-500/20 px-2.5 py-1 text-xs font-medium text-pink-400">
+                                                        {tech}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
 
-                                    <div>
-                                        <h4 className="text-zinc-500 text-[11px] font-bold uppercase tracking-widest mb-3">
-                                            Base Stack (Back-end)
-                                        </h4>
-                                        <ul className="flex flex-wrap gap-1.5">
-                                            {selectedProject.baseStack.map((tech) => (
-                                                <li key={tech} className="rounded-lg bg-zinc-900 border border-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-400">
-                                                    {tech}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                        <div>
+                                            <h3 className="text-zinc-500 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-2 sm:mb-3">
+                                                Base Stack (Back-end)
+                                            </h3>
+                                            <ul className="flex flex-wrap gap-1.5">
+                                                {selectedProject.baseStack.map((tech) => (
+                                                    <li key={tech} className="rounded-lg bg-zinc-900 border border-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-400">
+                                                        {tech}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </section>
                                 </div>
                             </div>
-                        </motion.article>
-                    </aside>
+                        </motion.div>
+                    </dialog>
                 )}
             </AnimatePresence>
         </section>
