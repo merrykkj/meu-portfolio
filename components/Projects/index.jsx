@@ -115,7 +115,7 @@ export default function Projects() {
                 {selectedProject && (
                     <dialog 
                         open
-                        className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-transparent w-full h-full max-w-full max-h-full"
+                        className="fixed inset-0 z-50 flex items-center pt-20 sm:pt-6 justify-center p-4 sm:p-6 overflow-hidden bg-transparent w-full h-full max-w-full max-h-full"
                     >
                         <motion.div
                             initial={{ opacity: 0 }}
