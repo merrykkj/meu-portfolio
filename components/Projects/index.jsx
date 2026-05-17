@@ -55,8 +55,8 @@ export default function Projects() {
         <section id='projetos' className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-pink-500 via-pink-600 to-pink-900 px-6 py-20">
             <ProjectsBanner />
 
-            <header className="relative z-40 mb-20 text-center select-none">
-                <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase italic tracking-tighter bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400 text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.25)]">
+            <header className="relative z-40 mb-20 text-center select-none px-4">
+                <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase italic tracking-tighter bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400 text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.65)] py-2 px-6">
                     Projetos
                 </h1>
             </header>

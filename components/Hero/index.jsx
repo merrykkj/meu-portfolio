@@ -70,7 +70,7 @@ export default function Hero() {
             Main Stack & Software Focus
           </h2>
 
-          <ul className="flex flex-row flex-wrap justify-center md:justify-start gap-6 sm:gap-10 items-center list-none p-0 w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <ul className="flex flex-row justify-center md:justify-start gap-4 md:gap-10 items-center list-none p-0 w-full">
             {[
               { name: 'Next.js', src: '/nextjs.svg' },
               { name: 'React', src: '/react.svg' },
@@ -78,18 +78,18 @@ export default function Hero() {
               { name: 'Node.js', src: '/nodejs.svg' },
               { name: 'JavaScript', src: '/javascript.svg' }
             ].map((tech) => (
-              <li key={tech.name} className="shrink-0">
+              <li key={tech.name}>
                 <motion.img
                   src={tech.src}
                   alt={`Logo ${tech.name}`}
                   title={tech.name}
                   whileHover={{ scale: 1.25, y: -5 }}
-                  className="h-8 md:h-9 invert opacity-75 hover:invert-0 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
+                  className="h-6 md:h-9 invert opacity-75 hover:invert-0 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
                 />
               </li>
             ))}
 
-            <li className="relative flex flex-col items-center group shrink-0">
+            <li className="relative flex flex-col items-center group">
               <span className="absolute -top-5 text-[9px] bg-purple-600 px-2 py-0.5 rounded-full text-white font-black shadow-md border border-purple-400 animate-bounce z-20 whitespace-nowrap">
                 START
               </span>
@@ -98,7 +98,7 @@ export default function Hero() {
                 alt="Logo Java"
                 title="Estudando Java"
                 whileHover={{ scale: 1.25, y: -5 }}
-                className="h-8 md:h-9 opacity-50 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
+                className="h-6 md:h-9 opacity-50 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
               />
             </li>
           </ul>
