@@ -3,6 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+#contato input,
+#contato textarea {
+  background-color: #1c101e;
+  color: #f7eaf5;
+  color-scheme: dark;
+}
+
+#contato input:-webkit-autofill,
+#contato input:-webkit-autofill:hover,
+#contato input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #1c101e inset !important;
+  -webkit-text-fill-color: #f7eaf5 !important;
+  caret-color: #f7eaf5;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

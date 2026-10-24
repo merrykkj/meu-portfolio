@@ -123,7 +123,7 @@ export default function Projects() {
     <>
       <section
         id="projetos"
-        className="relative isolate min-h-screen w-full bg-[#190819] bg-[url('/akaza-projetos2.png')] bg-cover bg-[35%_center] bg-no-repeat text-white"
+        className="relative isolate min-h-screen w-full bg-[#190819] bg-[url('/akaza-projetos3.png')] bg-cover bg-[35%_center] bg-no-repeat text-white"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-[#080310] via-[#080310]/75 to-transparent sm:h-56 lg:h-72" />
 
@@ -148,14 +148,19 @@ export default function Projects() {
 
             <div className="flex flex-col gap-10 sm:gap-12">
               {projects.map((project, index) => (
-                <div key={project.id} className="relative isolate">
-                  <motion.article
-                    initial={{ opacity: 0, y: 35 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group relative z-0 overflow-hidden rounded-[22px] border-2 border-[#ff5ba8] bg-[#210b23]/95 shadow-[0_0_20px_rgba(255,65,149,0.25)] transition-all duration-500 hover:border-[#ff9cca] hover:shadow-[0_0_35px_rgba(255,65,149,0.45)]"
-                  >
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  className="relative isolate"
+                >
+                  <article className="group relative z-0 overflow-hidden rounded-[22px] border-2 border-[#ff5ba8] bg-[#210b23]/95 shadow-[0_0_20px_rgba(255,65,149,0.25)] transition-all duration-500 hover:border-[#ff9cca] hover:shadow-[0_0_35px_rgba(255,65,149,0.45)]">
                     <div className="grid md:grid-cols-[47%_53%]">
                       <div className="relative overflow-hidden">
                         <ProjectPreview
@@ -193,7 +198,7 @@ export default function Projects() {
                         </button>
                       </div>
                     </div>
-                  </motion.article>
+                  </article>
 
                   <div className="pointer-events-none absolute inset-x-[-4%] bottom-[-35px] z-10 h-24 opacity-40 sm:bottom-[-45px] sm:h-32 lg:bottom-[-55px] lg:h-40">
                     <Image
@@ -205,7 +210,7 @@ export default function Projects() {
                       aria-hidden="true"
                     />
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

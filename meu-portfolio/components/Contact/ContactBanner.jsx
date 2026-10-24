@@ -1,17 +1,10 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 export default function ContactBanner() {
     return (
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-            <motion.div
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
+            <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: "url('/douma-contato3.png')"
+                    backgroundImage: "url('/douma-contato4.png')"
                 }}
             />
 

@@ -9,7 +9,7 @@ const colors = {
   hero: "hover:text-red-500 hover:drop-shadow-[0_0_10px_#ef4444]",
   sobre: "hover:text-lime-400 hover:drop-shadow-[0_0_10px_#b5df24]",
   projetos: "hover:text-pink-500 hover:drop-shadow-[0_0_10px_#ec4899]",
-  contato: "hover:text-purple-500 hover:drop-shadow-[0_0_10px_#a855f7]"
+  contato: "hover:text-[#b77d99] hover:drop-shadow-[0_0_10px_#b77d99]"
 };
 
 export default function Header() {
@@ -62,30 +62,37 @@ export default function Header() {
   const hoverStyle = colors[activeSection] || colors.hero;
 
   return (
-    <header className="fixed top-0 left-0 z-[999] w-full bg-black/50 py-3 backdrop-blur-md transition-all duration-300 md:h-12">
+    <header className="fixed left-0 top-0 z-[999] w-full bg-black/50 py-3 backdrop-blur-md transition-all duration-300 md:h-12">
       <nav
         aria-label="Navegação principal"
         className="container mx-auto flex items-center justify-between px-6 md:justify-center"
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
+          aria-label={
+            isOpen
+              ? "Fechar menu de navegação"
+              : "Abrir menu de navegação"
+          }
           aria-expanded={isOpen}
           className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5 rounded text-white focus:outline-none md:hidden"
         >
           <span
-            className={`h-0.5 w-6 origin-center rounded-full bg-white transition-all duration-300 ${isOpen ? "translate-y-2 rotate-45" : ""
-              }`}
+            className={`h-0.5 w-6 origin-center rounded-full bg-white transition-all duration-300 ${
+              isOpen ? "translate-y-2 rotate-45" : ""
+            }`}
           />
 
           <span
-            className={`h-0.5 w-6 rounded-full bg-white transition-all duration-300 ${isOpen ? "opacity-0" : ""
-              }`}
+            className={`h-0.5 w-6 rounded-full bg-white transition-all duration-300 ${
+              isOpen ? "opacity-0" : ""
+            }`}
           />
 
           <span
-            className={`h-0.5 w-6 origin-center rounded-full bg-white transition-all duration-300 ${isOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
+            className={`h-0.5 w-6 origin-center rounded-full bg-white transition-all duration-300 ${
+              isOpen ? "-translate-y-2 -rotate-45" : ""
+            }`}
           />
         </button>
 
@@ -97,9 +104,10 @@ export default function Header() {
             transition-all duration-300 ease-in-out
             md:static md:h-auto md:w-auto md:flex-row md:gap-7
             md:bg-transparent md:text-base
-            ${isOpen
-              ? "pointer-events-auto opacity-100"
-              : "pointer-events-none opacity-0 md:pointer-events-auto md:opacity-100"
+            ${
+              isOpen
+                ? "pointer-events-auto opacity-100"
+                : "pointer-events-none opacity-0 md:pointer-events-auto md:opacity-100"
             }
           `}
         >
