@@ -47,7 +47,7 @@ function ProjectPreview({ project, priority = false, modal = false }) {
         alt=""
         fill
         sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-cover opacity-35 blur-2xl scale-125"
+        className="scale-125 object-cover opacity-35 blur-2xl"
         aria-hidden="true"
       />
 
@@ -123,11 +123,11 @@ export default function Projects() {
     <>
       <section
         id="projetos"
-        className="relative isolate min-h-screen w-full bg-[#190819] bg-[url('/akaza-projetos.png')] bg-cover bg-center bg-no-repeat text-white lg:bg-[-120px_top]"
+        className="relative isolate min-h-screen w-full bg-[#190819] bg-[url('/akaza-projetos2.png')] bg-cover bg-[35%_center] bg-no-repeat text-white"
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-[#190819] via-[#190819]/75 to-transparent sm:h-56 lg:h-72" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-[#080310] via-[#080310]/75 to-transparent sm:h-56 lg:h-72" />
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-40 bg-gradient-to-t from-[#190819] via-[#190819]/65 to-transparent sm:h-56 lg:h-72" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-48 bg-gradient-to-t from-[#080310] via-[#080310]/75 to-transparent sm:h-56 lg:h-72" />
 
         <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1800px] flex-col px-5 pb-20 pt-24 sm:px-10 lg:items-end lg:px-12 lg:pb-24 lg:pt-16 xl:px-20">
           <div className="w-full lg:w-[66%] xl:w-[64%]">
@@ -146,54 +146,66 @@ export default function Projects() {
               </p>
             </header>
 
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-10 sm:gap-12">
               {projects.map((project, index) => (
-                <motion.article
-                  key={project.id}
-                  initial={{ opacity: 0, y: 35 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-[22px] border-2 border-[#ff5ba8] bg-[#210b23]/95 shadow-[0_0_20px_rgba(255,65,149,0.25)] transition-all duration-500 hover:border-[#ff9cca] hover:shadow-[0_0_35px_rgba(255,65,149,0.45)]"
-                >
-                  <div className="grid md:grid-cols-[47%_53%]">
-                    <div className="relative overflow-hidden">
-                      <ProjectPreview
-                        project={project}
-                        priority={index === 0}
-                      />
-                    </div>
-
-                    <div className="relative flex min-w-0 flex-col justify-center px-6 py-8 sm:px-8 md:px-7 lg:px-9">
-                      <h3 className="mb-4 text-3xl font-black uppercase italic tracking-tight text-[#ffd5e9] sm:text-4xl">
-                        {project.title}
-                      </h3>
-
-                      <p className="mb-5 text-sm leading-7 text-[#ead7e2] sm:text-[15px]">
-                        {project.shortDesc}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech) => (
-                          <span
-                            key={tech}
-                            className="rounded-full border border-[#e94499]/60 bg-[#5d1744]/45 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#ffe3f0] sm:text-xs"
-                          >
-                            {tech}
-                          </span>
-                        ))}
+                <div key={project.id} className="relative isolate">
+                  <motion.article
+                    initial={{ opacity: 0, y: 35 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group relative z-0 overflow-hidden rounded-[22px] border-2 border-[#ff5ba8] bg-[#210b23]/95 shadow-[0_0_20px_rgba(255,65,149,0.25)] transition-all duration-500 hover:border-[#ff9cca] hover:shadow-[0_0_35px_rgba(255,65,149,0.45)]"
+                  >
+                    <div className="grid md:grid-cols-[47%_53%]">
+                      <div className="relative overflow-hidden">
+                        <ProjectPreview
+                          project={project}
+                          priority={index === 0}
+                        />
                       </div>
 
-                      <button
-                        type="button"
-                        onClick={() => setSelectedProject(project)}
-                        className="mt-6 w-fit rounded-xl border border-[#fa65b0] bg-[#57183e]/80 px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#ffe3f0] transition-all duration-300 hover:bg-[#df398c] hover:shadow-[0_0_20px_rgba(255,85,170,0.6)]"
-                      >
-                        Ver Projeto
-                      </button>
+                      <div className="relative flex min-w-0 flex-col justify-center px-6 py-8 sm:px-8 md:px-7 lg:px-9">
+                        <h3 className="mb-4 text-3xl font-black uppercase italic tracking-tight text-[#ffd5e9] sm:text-4xl">
+                          {project.title}
+                        </h3>
+
+                        <p className="mb-5 text-sm leading-7 text-[#ead7e2] sm:text-[15px]">
+                          {project.shortDesc}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((tech) => (
+                            <span
+                              key={tech}
+                              className="rounded-full border border-[#e94499]/60 bg-[#5d1744]/45 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#ffe3f0] sm:text-xs"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => setSelectedProject(project)}
+                          className="mt-6 w-fit rounded-xl border border-[#fa65b0] bg-[#57183e]/80 px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#ffe3f0] transition-all duration-300 hover:bg-[#df398c] hover:shadow-[0_0_20px_rgba(255,85,170,0.6)]"
+                        >
+                          Ver Projeto
+                        </button>
+                      </div>
                     </div>
+                  </motion.article>
+
+                  <div className="pointer-events-none absolute inset-x-[-4%] bottom-[-35px] z-10 h-24 opacity-40 sm:bottom-[-45px] sm:h-32 lg:bottom-[-55px] lg:h-40">
+                    <Image
+                      src="/fumaca-akaza.png"
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 100vw, 75vw"
+                      className="object-fill"
+                      aria-hidden="true"
+                    />
                   </div>
-                </motion.article>
+                </div>
               ))}
             </div>
           </div>
