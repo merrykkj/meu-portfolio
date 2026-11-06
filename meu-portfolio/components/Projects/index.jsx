@@ -33,6 +33,64 @@ const projects = [
   },
 ];
 
+function ProjectPreview({ project, priority = false, modal = false }) {
+  return (
+    <div
+      className={`relative isolate w-full overflow-hidden bg-[#180817] ${
+        modal
+          ? "aspect-[16/10] rounded-2xl border border-[#ff7ab8]/25"
+          : "h-full min-h-[240px] sm:min-h-[300px] md:min-h-[340px]"
+      }`}
+    >
+      <Image
+        src={project.image}
+        alt=""
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover opacity-35 blur-2xl scale-125"
+        aria-hidden="true"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1d0920]/35 via-[#260b25]/15 to-[#0b0410]/70" />
+
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_20%,rgba(12,3,15,0.55)_100%)]" />
+
+      <div
+        className={`absolute inset-0 flex items-center justify-center ${
+          modal ? "p-3 sm:p-5" : "p-5 sm:p-7 lg:p-8"
+        }`}
+      >
+        <div className="relative w-full max-w-[650px] overflow-hidden rounded-xl border border-white/15 bg-[#130712] shadow-[0_20px_55px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-[1.025]">
+          <div className="flex h-7 items-center gap-2 border-b border-white/10 bg-[#210d20] px-3">
+            <span className="h-2 w-2 rounded-full bg-[#ff668e]" />
+            <span className="h-2 w-2 rounded-full bg-[#ffca68]" />
+            <span className="h-2 w-2 rounded-full bg-[#a6d88a]" />
+
+            <span className="ml-auto text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b99aac]">
+              {project.title}
+            </span>
+          </div>
+
+          <div className="relative aspect-[16/9] w-full bg-[#170a18]">
+            <Image
+              src={project.image}
+              alt={`Prévia do projeto ${project.title}`}
+              fill
+              priority={priority}
+              sizes="(max-width: 768px) 90vw, 45vw"
+              className="object-contain"
+            />
+          </div>
+        </div>
+      </div>
+
+      {!modal && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#210b23]/70 to-transparent" />
+      )}
+    </div>
+  );
+}
+
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [mounted, setMounted] = useState(false);
@@ -96,26 +154,22 @@ export default function Projects() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative overflow-hidden rounded-[22px] border-2 border-[#ff5ba8] bg-[#210b23]/90 shadow-[0_0_20px_rgba(255,65,149,0.25)] transition-all duration-500 hover:border-[#ff9cca] hover:shadow-[0_0_35px_rgba(255,65,149,0.45)]"
+                  className="group relative overflow-hidden rounded-[22px] border-2 border-[#ff5ba8] bg-[#210b23]/95 shadow-[0_0_20px_rgba(255,65,149,0.25)] transition-all duration-500 hover:border-[#ff9cca] hover:shadow-[0_0_35px_rgba(255,65,149,0.45)]"
                 >
-                  <div className="grid overflow-hidden rounded-[20px] md:grid-cols-[47%_53%]">
-                    <div className="relative min-h-[220px] overflow-hidden bg-[#260c24] sm:min-h-[280px] md:min-h-[300px]">
-                      <Image
-                        src={project.image}
-                        alt={`Prévia do projeto ${project.title}`}
-                        fill
+                  <div className="grid md:grid-cols-[47%_53%]">
+                    <div className="relative overflow-hidden">
+                      <ProjectPreview
+                        project={project}
                         priority={index === 0}
-                        sizes="(max-width: 768px) 100vw, 40vw"
-                        className="object-contain transition-transform duration-700 group-hover:scale-[1.04]"
                       />
                     </div>
 
-                    <div className="relative flex flex-col justify-center px-6 py-7 sm:px-8 md:px-7 lg:px-9">
+                    <div className="relative flex min-w-0 flex-col justify-center px-6 py-8 sm:px-8 md:px-7 lg:px-9">
                       <h3 className="mb-4 text-3xl font-black uppercase italic tracking-tight text-[#ffd5e9] sm:text-4xl">
                         {project.title}
                       </h3>
 
-                      <p className="mb-5 text-sm leading-6 text-[#ead7e2] sm:text-[15px]">
+                      <p className="mb-5 text-sm leading-7 text-[#ead7e2] sm:text-[15px]">
                         {project.shortDesc}
                       </p>
 
@@ -167,14 +221,15 @@ export default function Projects() {
                   exit={{ opacity: 0, scale: 0.96, y: 15 }}
                   transition={{ duration: 0.25, ease: "easeOut" }}
                   onClick={(event) => event.stopPropagation()}
-                  className="relative flex max-h-[min(90dvh,720px)] w-full max-w-[900px] flex-col overflow-hidden rounded-[20px] border border-[#ff65b0]/75 bg-[#210b23] shadow-[0_0_55px_rgba(255,65,149,0.22)] sm:rounded-[26px]"
+                  className="relative flex max-h-[90dvh] w-full max-w-[900px] flex-col overflow-hidden rounded-[20px] border border-[#ff65b0]/75 bg-[#210b23] shadow-[0_0_55px_rgba(255,65,149,0.22)] sm:rounded-[26px]"
                 >
                   <div className="flex shrink-0 items-center justify-between border-b border-[#ff65b0]/20 px-5 py-3 sm:px-7">
                     <div className="flex min-w-0 items-center gap-3">
                       <span className="h-2 w-2 shrink-0 rounded-full bg-[#ff65b0]" />
 
                       <span className="truncate text-[10px] font-bold uppercase tracking-[0.2em] text-[#ff9acb] sm:text-xs">
-                        Arte da Destruição / Projeto {String(selectedProject.id).padStart(2, "0")}
+                        Arte da Destruição / Projeto{" "}
+                        {String(selectedProject.id).padStart(2, "0")}
                       </span>
                     </div>
 
@@ -191,15 +246,10 @@ export default function Projects() {
                   <div className="min-h-0 overflow-y-auto overscroll-contain">
                     <div className="grid lg:grid-cols-[43%_57%]">
                       <div className="border-b border-[#ff65b0]/20 bg-[#2c0e2c] p-4 sm:p-6 lg:border-b-0 lg:border-r">
-                        <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-[#ff65b0]/20 bg-[#190819] lg:aspect-[4/5]">
-                          <Image
-                            src={selectedProject.image}
-                            alt={`Prévia do projeto ${selectedProject.title}`}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 380px"
-                            className="object-contain"
-                          />
-                        </div>
+                        <ProjectPreview
+                          project={selectedProject}
+                          modal
+                        />
 
                         <div className="mt-4 flex items-center justify-between gap-3">
                           <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#dca8c6]">
