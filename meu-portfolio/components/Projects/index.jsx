@@ -1,223 +1,249 @@
-'use client'
 
-import { useState, useEffect } from 'react'
-import ProjectsBanner from './ProjectsBanner'
-import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
+"use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+
+const projects = [
+    {
+        id: 1,
+        title: "ZELOS",
+        image: "/zelos.png",
+        badge: "Hackathon",
+        github: "https://github.com/merrykkj/zelos",
+        desc: "Projeto desenvolvido durante Hackathon para otimizar a gestão de manutenção escolar. Atuei no front-end criando uma interface para registro de chamados via número de patrimônio, permitindo que técnicos e usuários acompanhem o status e o histórico de serviços em tempo real.",
+        shortDesc: "Projeto desenvolvido durante Hackathon para otimizar a gestão de manutenção escolar. Atuei no front-end criando uma interface para registro de chamados via número de patrimônio.",
+        myStack: ["Next.js", "Tailwind", "React", "Framer Motion", "Shadcn/ui"],
+        baseStack: ["Node.js", "Express", "MySQL"],
+        tech: ["Next.js", "Hackathon", "Gestão"],
+    },
+    {
+        id: 2,
+        title: "NAVI",
+        image: "/navi.png",
+        badge: "Dashboard",
+        github: "https://github.com/merrykkj/Navi",
+        desc: "Sistema de gerenciamento de estacionamento onde atuei no desenvolvimento da interface. Transformei regras de negócio complexas em um dashboard intuitivo, garantindo uma experiência fluida para o controle de pátio em tempo real.",
+        shortDesc: "Sistema de gerenciamento de estacionamento onde atuei no desenvolvimento da interface. Transformei regras de negócio complexas em um dashboard intuitivo e responsivo.",
+        myStack: ["Next.js", "Tailwind", "React", "Framer Motion", "Shadcn/ui"],
+        baseStack: ["Node.js", "MySQL", "Docker", "IoT (MQTT)", "GitHub Actions"],
+        tech: ["Next.js 14", "Shadcn", "TailwindCSS"],
+    },
+];
 
 export default function Projects() {
-    const [selectedProject, setSelectedProject] = useState(null)
-    const [isMounted, setIsMounted] = useState(false)
+    const [selectedProject, setSelectedProject] = useState(null);
 
     useEffect(() => {
-        setIsMounted(true)
-    }, [])
+        document.body.style.overflow = selectedProject ? "hidden" : "";
 
-    useEffect(() => {
-        if (selectedProject) {
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = ''
-        }
         return () => {
-            document.body.style.overflow = ''
+            document.body.style.overflow = "";
+        };
+    }, [selectedProject]);
+
+    useEffect(() => {
+        function handleKeyDown(event) {
+            if (event.key === "Escape") {
+                setSelectedProject(null);
+            }
         }
-    }, [selectedProject])
 
-    const projects = [
-        {
-            id: 1,
-            title: 'ZELOS',
-            image: '/zelos.png',
-            badge: 'Hackathon',
-            github: 'https://github.com/merrykkj/zelos',
-            desc: 'Projeto desenvolvido durante Hackathon para otimizar a gestão de manutenção escolar. Atuei no front-end criando uma interface para registro de chamados via número de patrimônio, permitindo que técnicos e usuários acompanhem o status e o histórico de serviços em tempo real.',
-            myStack: ['Next.js', 'Tailwind', 'React', 'Framer Motion', 'Shadcn/ui'],
-            baseStack: ['Node.js', 'Express', 'MySQL'],
-            tech: ['Next.js', 'Hackathon', 'Gestão']
-        },
-        {
-            id: 2,
-            title: 'NAVI',
-            image: '/navi.png',
-            badge: 'Dashboard',
-            github: 'https://github.com/merrykkj/Navi',
-            desc: 'Sistema de gerenciamento de estacionamento onde atuei no desenvolvimento da interface. Transformei regras de negócio complexas em um dashboard intuitivo, garantindo uma experiência fluida para o controle de pátio em tempo real.',
-            myStack: ['Next.js', 'Tailwind', 'React', 'Framer Motion', 'Shadcn/ui'],
-            baseStack: ['Node.js', 'MySQL', 'Docker', 'IoT (MQTT)', 'GitHub Actions'],
-            tech: ['Next.js 14', 'Shadcn', 'TailwindCss'],
-        },
-    ]
+        window.addEventListener("keydown", handleKeyDown);
 
-    if (!isMounted) return null
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, []);
 
     return (
-        <section id='projetos' className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-pink-500 via-pink-600 to-pink-900 px-6 py-20">
-            <ProjectsBanner />
+        <section
+            id="projetos"
+            className="relative isolate min-h-screen w-full bg-[#190819] bg-[url('/akaza-projetos.png')] bg-cover bg-center bg-no-repeat text-white lg:bg-[-120px_top]"    >
+            <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-[#190819] via-[#190819]/75 to-transparent sm:h-56 lg:h-72" />
 
-            <header className="relative z-40 mb-20 text-center select-none px-4">
-                <h1 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase italic tracking-tighter bg-clip-text bg-gradient-to-b from-white via-zinc-100 to-zinc-400 text-transparent drop-shadow-[0_0_30px_rgba(255,255,255,0.65)] py-2 px-6">
-                    Projetos
-                </h1>
-            </header>
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-40 bg-gradient-to-t from-[#190819] via-[#190819]/65 to-transparent sm:h-56 lg:h-72" />
 
-            <main className="container relative z-40 mx-auto flex justify-center">
-                <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:max-w-5xl w-full">
-                    {projects.map((project) => (
-                        <article
-                            key={project.id}
-                            className="group flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/40 backdrop-blur-md shadow-xl transition-all duration-500 hover:-translate-y-2 hover:border-pink-500/40 hover:shadow-[0_10px_30px_rgba(236,72,153,0.2)]"
-                        >
-                            <figure className="relative h-[240px] overflow-hidden rounded-t-3xl isolate bg-zinc-900/50">
-                                <Image
-                                    src={project.image}
-                                    alt={`Captura de tela do projeto ${project.title}`}
-                                    width={600}
-                                    height={350}
-                                    priority={project.id === 1}
-                                    className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 will-change-transform"
-                                />
-                            </figure>
+            <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1800px] flex-col px-5 pb-20 pt-24 sm:px-10 lg:items-end lg:px-12 lg:pb-24 lg:pt-16 xl:px-20">
+                <div className="w-full lg:w-[66%] xl:w-[64%]">
+                    <header className="mb-10 text-center lg:mb-12">
+                        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.4em] text-[#ffc0df] sm:text-sm">
+                            Arte da Destruição
+                        </p>
 
-                            <div className="flex flex-1 flex-col p-8">
-                                <h2 className="mb-3 text-3xl font-black uppercase italic tracking-tight text-pink-500">
-                                    {project.title}
-                                </h2>
+                        <h2 className="text-[clamp(2.7rem,5.5vw,6rem)] font-black uppercase italic leading-[1.1] tracking-[-0.055em] text-[#ffb5d8]">
+                            Meus Projetos
+                        </h2>
 
-                                <p className="mb-6 flex-1 text-sm leading-relaxed text-zinc-300 font-medium line-clamp-3">
-                                    {project.desc}
-                                </p>
+                        <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-[#f0dce7] sm:text-base">
+                            Cada projeto representa um novo desafio, uma habilidade
+                            aperfeiçoada e uma evolução na minha jornada como desenvolvedora.
+                        </p>
+                    </header>
 
-                                <ul className="mb-8 flex flex-wrap gap-2">
-                                    {project.tech.map((tech) => (
-                                        <li
-                                            key={tech}
-                                            className="rounded-full bg-zinc-900/60 border border-white/5 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-zinc-300 group-hover:border-pink-500/20 group-hover:text-pink-400 transition-colors duration-300"
+                    <div className="flex flex-col gap-6">
+                        {projects.map((project, index) => (
+                            <motion.article
+                                key={project.id}
+                                initial={{ opacity: 0, y: 35 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.2 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="group relative overflow-hidden rounded-[22px] border-2 border-[#ff5ba8] bg-[#210b23]/90 shadow-[0_0_20px_rgba(255,65,149,0.25)] transition-all duration-500 hover:border-[#ff9cca] hover:shadow-[0_0_35px_rgba(255,65,149,0.45)]"
+                            >
+                                <div className="grid overflow-hidden rounded-[20px] md:grid-cols-[47%_53%]">
+                                    <div className="relative min-h-[220px] overflow-hidden bg-[#260c24] sm:min-h-[280px] md:min-h-[300px]">
+                                        <Image
+                                            src={project.image}
+                                            alt={`Prévia do projeto ${project.title}`}
+                                            fill
+                                            priority={index === 0}
+                                            sizes="(max-width: 768px) 100vw, 40vw"
+                                            className="object-contain transition-transform duration-700 group-hover:scale-[1.04]"
+                                        />
+                                    </div>
+
+                                    <div className="relative flex flex-col justify-center px-6 py-7 sm:px-8 md:px-7 lg:px-9">
+                                        <h3 className="mb-4 text-3xl font-black uppercase italic tracking-tight text-[#ffd5e9] sm:text-4xl">
+                                            {project.title}
+                                        </h3>
+
+                                        <p className="mb-5 text-sm leading-6 text-[#ead7e2] sm:text-[15px]">
+                                            {project.shortDesc}
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.tech.map((tech) => (
+                                                <span
+                                                    key={tech}
+                                                    className="rounded-full border border-[#e94499]/60 bg-[#5d1744]/45 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-[#ffe3f0] sm:text-xs"
+                                                >
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => setSelectedProject(project)}
+                                            className="mt-6 w-fit rounded-xl border border-[#fa65b0] bg-[#57183e]/80 px-5 py-3 text-xs font-bold uppercase uppercase tracking-wider text-[#ffe3f0] transition-all duration-300 hover:bg-[#df398c] hover:shadow-[0_0_20px_rgba(255,85,170,0.6)]"
                                         >
-                                            {tech}
-                                        </li>
-                                    ))}
-                                </ul>
-
-                                <button
-                                    onClick={() => setSelectedProject(project)}
-                                    className="w-full mt-auto rounded-xl bg-zinc-900/80 border border-white/5 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-pink-600 hover:border-pink-600 hover:shadow-[0_0_20px_rgba(236,72,153,0.4)]"
-                                >
-                                    Ver Projeto
-                                </button>
-                            </div>
-                        </article>
-                    ))}
+                                            Ver Projeto
+                                        </button>
+                                    </div>
+                                </div>
+                            </motion.article>
+                        ))}
+                    </div>
                 </div>
-            </main>
+            </div>
 
             <AnimatePresence>
                 {selectedProject && (
-                    <dialog 
-                        open
-                        className="fixed inset-0 z-50 flex items-center pt-20 sm:pt-6 justify-center p-4 sm:p-6 overflow-hidden bg-transparent w-full h-full max-w-full max-h-full"
+                    <motion.div
+                        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md sm:p-6"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={`Detalhes do projeto ${selectedProject.title}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedProject(null)}
                     >
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setSelectedProject(null)}
-                            className="absolute inset-0 bg-black/80 backdrop-blur-md"
-                        />
-
-                        <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.95, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="relative flex flex-col w-[calc(100%-1rem)] max-w-sm sm:max-w-2xl max-h-[85vh] sm:max-h-[calc(100vh-4rem)] overflow-hidden rounded-3xl border border-white/10 bg-zinc-950/70 backdrop-blur-md shadow-2xl z-10"
+                            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.94, y: 20 }}
+                            transition={{ duration: 0.25 }}
+                            onClick={(event) => event.stopPropagation()}
+                            className="relative flex max-h-[88dvh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-[#f05aa7]/60 bg-[#1c0b20] shadow-[0_0_55px_rgba(232,51,135,0.3)]"
                         >
                             <button
+                                type="button"
                                 onClick={() => setSelectedProject(null)}
-                                className="absolute right-4 top-4 sm:right-5 sm:top-5 z-50 rounded-full bg-black/60 p-2.5 text-white/70 transition hover:bg-black/80 hover:text-white border border-white/5 backdrop-blur-sm active:scale-95"
                                 aria-label="Fechar modal"
+                                className="absolute right-4 top-4 z-30 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#18091d]/90 text-xl text-white transition hover:bg-[#d83a8a]"
                             >
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
+                                ×
                             </button>
 
-                            <div className="w-full overflow-y-auto overscroll-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                                <figure className="relative h-[180px] sm:h-[260px] w-full overflow-hidden bg-zinc-900 shrink-0 isolate group">
-                                    <span className="absolute top-4 left-4 sm:top-5 sm:left-5 z-30 rounded-md bg-pink-500 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white shadow-[0_4px_12px_rgba(236,72,153,0.4)]">
+                            <div className="overflow-y-auto overscroll-contain">
+                                <div className="relative h-48 w-full bg-[#290d28] sm:h-64">
+                                    <Image
+                                        src={selectedProject.image}
+                                        alt={`Imagem do projeto ${selectedProject.title}`}
+                                        fill
+                                        sizes="(max-width: 640px) 100vw, 672px"
+                                        className="object-contain"
+                                    />
+
+                                    <span className="absolute bottom-4 left-6 rounded-full border border-[#f67bb8] bg-[#6a1949]/90 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white">
                                         {selectedProject.badge}
                                     </span>
+                                </div>
 
-                                    <div className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform">
-                                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/25 to-transparent z-10 pointer-events-none" />
-                                        <Image
-                                            src={selectedProject.image}
-                                            alt={`Imagem expandida de ${selectedProject.title}`}
-                                            width={800}
-                                            height={450}
-                                            className="h-full w-full object-cover object-top"
-                                        />
-                                    </div>
-                                </figure>
-
-                                <div className="w-full flex flex-col p-6 sm:p-10">
-                                    <header className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 sm:mb-3">
-                                        <h2 className="text-2xl sm:text-3xl font-black uppercase italic tracking-tight text-pink-500">
+                                <div className="p-6 sm:p-9">
+                                    <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                        <h2 className="text-3xl font-black uppercase italic text-[#ff93c7] sm:text-4xl">
                                             {selectedProject.title}
                                         </h2>
-                                        {selectedProject.github && (
-                                            <a
-                                                href={selectedProject.github}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-zinc-900/50 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-zinc-300 transition-all duration-300 hover:border-pink-500/30 hover:bg-pink-600 hover:text-white hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] w-full sm:w-auto"
-                                            >
-                                                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-                                                    <path d="M9 18c-4.51 2-5-2-7-2" />
-                                                </svg>
-                                                Ver Repositório
-                                            </a>
-                                        )}
-                                    </header>
 
-                                    <p className="mb-6 sm:mb-8 text-xs sm:text-sm leading-relaxed text-zinc-400 font-medium">
+                                        <a
+                                            href={selectedProject.github}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center rounded-xl border border-[#e95da5]/60 bg-[#601b47]/50 px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-[#d43a88]"
+                                        >
+                                            Ver Repositório
+                                        </a>
+                                    </div>
+
+                                    <p className="mb-7 text-sm leading-7 text-[#e4cbd9]">
                                         {selectedProject.desc}
                                     </p>
 
-                                    <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 sm:pt-2 border-t border-zinc-900">
+                                    <div className="grid gap-6 border-t border-[#e95da5]/25 pt-6 sm:grid-cols-2">
                                         <div>
-                                            <h3 className="text-zinc-500 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-2 sm:mb-3">
+                                            <h3 className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[#ff9acb]">
                                                 Minha Stack (Front-end)
                                             </h3>
-                                            <ul className="flex flex-wrap gap-1.5">
+
+                                            <div className="flex flex-wrap gap-2">
                                                 {selectedProject.myStack.map((tech) => (
-                                                    <li key={tech} className="rounded-lg bg-pink-500/10 border border-pink-500/20 px-2.5 py-1 text-xs font-medium text-pink-400">
+                                                    <span
+                                                        key={tech}
+                                                        className="rounded-lg border border-[#ec60aa]/35 bg-[#ec60aa]/10 px-3 py-1.5 text-xs text-[#ffc1df]"
+                                                    >
                                                         {tech}
-                                                    </li>
+                                                    </span>
                                                 ))}
-                                            </ul>
+                                            </div>
                                         </div>
 
                                         <div>
-                                            <h3 className="text-zinc-500 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mb-2 sm:mb-3">
+                                            <h3 className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[#ff9acb]">
                                                 Base Stack (Back-end)
                                             </h3>
-                                            <ul className="flex flex-wrap gap-1.5">
+
+                                            <div className="flex flex-wrap gap-2">
                                                 {selectedProject.baseStack.map((tech) => (
-                                                    <li key={tech} className="rounded-lg bg-zinc-900 border border-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-400">
+                                                    <span
+                                                        key={tech}
+                                                        className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-[#e3cedb]"
+                                                    >
                                                         {tech}
-                                                    </li>
+                                                    </span>
                                                 ))}
-                                            </ul>
+                                            </div>
                                         </div>
-                                    </section>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
-                    </dialog>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </section>
-    )
+    );
 }
