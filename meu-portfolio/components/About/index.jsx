@@ -7,20 +7,21 @@ export default function About() {
         <section
             id="sobre"
             aria-labelledby="about-title"
-            className="relative flex min-h-screen w-full items-center overflow-hidden bg-gradient-to-br from-orange-900 via-orange-800 to-amber-600 py-12 md:py-20"
+            className="relative isolate min-h-[100svh] w-full overflow-hidden bg-gradient-to-br from-orange-900 via-orange-800 to-amber-600"
         >
-            <AboutBanner />
+            <div className="mx-auto grid min-h-[100svh] w-full max-w-[1800px] grid-cols-1 items-center gap-6 px-5 py-16 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-4 md:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:px-10 xl:gap-8 xl:px-14">
 
-            <div className="absolute inset-0 z-10 pointer-events-none bg-black/10" aria-hidden="true" />
+                <div className="hidden h-[100svh] min-h-0 md:block">
+                    <AboutBanner />
+                </div>
 
-            <div className="container relative z-40 mx-auto flex h-full items-center justify-center px-6 md:justify-end md:px-24">
                 <motion.div
-                    initial={{ opacity: 0, x: 80 }}
+                    initial={{ opacity: 0, x: 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-xl p-10 md:p-14 bg-black/80 border border-white/10 backdrop-blur-3xl rounded-[3rem] shadow-2xl">
-
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    className="relative z-10 w-full min-w-0 rounded-[2rem] border border-white/10 bg-black/80 p-6 shadow-2xl backdrop-blur-3xl sm:p-8 lg:rounded-[3rem] lg:p-10 xl:p-14"
+                >
                     <header className="relative mb-8 md:mb-10">
                         <motion.div
                             initial={{ scaleX: 0 }}
@@ -57,8 +58,8 @@ export default function About() {
 
                     <div className="mt-8 flex justify-center md:justify-start">
                         <motion.a
-                            href="/curriculo-vitoria.pdf" 
-                            download="Curriculo_Vitoria.pdf" 
+                            href="/curriculo-vitoria.pdf"
+                            download="Curriculo_Vitoria.pdf"
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
                             className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-xs md:text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-[0_4px_20px_rgba(245,158,11,0.3)] hover:shadow-[0_4px_25px_rgba(245,158,11,0.5)] transition-all cursor-pointer"
