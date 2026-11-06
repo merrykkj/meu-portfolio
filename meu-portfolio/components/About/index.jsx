@@ -1,96 +1,133 @@
-'use client'
-import AboutBanner from './AboutBanner'
-import { motion } from 'framer-motion'
+
+"use client";
+
+import { motion } from "framer-motion";
+import AboutBanner from "./AboutBanner";
 
 export default function About() {
-    return (
-        <section
-            id="sobre"
-            aria-labelledby="about-title"
-            className="relative isolate min-h-[100svh] w-full overflow-hidden bg-gradient-to-br from-orange-900 via-orange-800 to-amber-600"
-        >
-            <div className="mx-auto grid min-h-[100svh] w-full max-w-[1800px] grid-cols-1 items-center gap-6 px-5 py-16 sm:px-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-4 md:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:px-10 xl:gap-8 xl:px-14">
+  return (
+    <section
+      id="sobre"
+      aria-labelledby="about-title"
+      className="relative isolate flex min-h-[100svh] w-full items-center overflow-hidden bg-[#080b05]"
+    >
+      <AboutBanner />
 
-                <div className="hidden h-[100svh] min-h-0 md:block">
-                    <AboutBanner />
-                </div>
+      <div className="relative z-10 mx-auto grid min-h-[100svh] w-full max-w-[1900px] grid-cols-1 items-center px-4 py-20 sm:px-8 md:grid-cols-2 md:gap-5 md:px-8 lg:grid-cols-[1fr_1.05fr] lg:px-12 xl:gap-10 xl:px-16">
+        <div className="hidden md:block" />
 
-                <motion.div
-                    initial={{ opacity: 0, x: 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    className="relative z-10 w-full min-w-0 rounded-[2rem] border border-white/10 bg-black/80 p-6 shadow-2xl backdrop-blur-3xl sm:p-8 lg:rounded-[3rem] lg:p-10 xl:p-14"
+        <div className="relative isolate w-full min-w-0 overflow-hidden border border-[#667d30]/25 bg-[#080a06]/95 px-6 py-10 shadow-[0_25px_90px_rgba(0,0,0,0.6)] sm:px-9 sm:py-12 md:rounded-[2.5rem] md:bg-[#080a06]/90 lg:px-12 lg:py-14 xl:px-14">
+          <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-[#18200c]/35 via-transparent to-[#0b0e07]/60" />
+
+          <div
+            className="pointer-events-none absolute -right-7 top-0 z-0 h-40 w-40 bg-contain bg-right-top bg-no-repeat opacity-70 sm:h-48 sm:w-48 lg:h-56 lg:w-56"
+            style={{
+              backgroundImage: "url('/lirio-aranha.png')",
+              backgroundSize: "100% auto",
+              backgroundPosition: "right top",
+            }}
+          />
+
+          <div
+            className="pointer-events-none absolute -bottom-12 -right-8 z-0 h-52 w-52 bg-contain bg-right-bottom bg-no-repeat opacity-65 sm:h-60 sm:w-60 lg:h-72 lg:w-72"
+            style={{
+              backgroundImage: "url('/lirio-aranha.png')",
+              backgroundSize: "100% auto",
+              backgroundPosition: "right bottom",
+            }}
+          />
+
+          <div className="pointer-events-none absolute left-0 top-0 h-24 w-24 border-l border-t border-[#a4c639]/30 md:rounded-tl-[2.5rem]" />
+
+          <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-24 border-b border-r border-[#a4c639]/20 md:rounded-br-[2.5rem]" />
+
+          <div className="relative z-10">
+            <header className="mb-9">
+              <div className="mb-6 h-[3px] w-20 bg-[#b5df24] shadow-[0_0_18px_rgba(181,223,36,0.5)]" />
+
+              <div className="relative inline-block">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -left-4 -top-7 select-none text-[120px] font-black leading-none text-[#8caf25]/10 sm:text-[150px]"
                 >
-                    <header className="relative mb-8 md:mb-10">
-                        <motion.div
-                            initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: 1 }}
-                            transition={{ duration: 1.2, delay: 0.5 }}
-                            className="absolute -top-4 left-0 h-[2px] w-20 origin-left bg-amber-400 shadow-[0_0_20px_#f59e0b]"
-                            aria-hidden="true"
-                        />
-                        <h2
-                            id="about-title"
-                            className="text-5xl font-black italic leading-none text-white uppercase tracking-tighter drop-shadow-lg md:text-7xl lg:text-8xl"
-                        >
-                            Sobre
-                        </h2>
-                        <p className="mt-3 ml-1 text-[10px] font-bold uppercase tracking-[0.4em] text-amber-400">
-                            Vitória Pereira / Portfolio
-                        </p>
-                    </header>
+                  ○
+                </span>
 
-                    <div className="space-y-6 text-base text-white leading-relaxed md:space-y-8 md:text-xl">
-                        <p className="relative">
-                            <span className="absolute -left-5 top-0 bottom-0 w-1 bg-amber-400/50" aria-hidden="true" />
-                            Sou Vitória, estudante de Desenvolvimento de Sistemas na{' '}
-                            <strong className="font-bold text-amber-400">
-                                FATEC Ipiranga
-                            </strong>
-                            . Minha missão é traduzir conceitos complexos em interfaces memoráveis.
-                        </p>
+                <h2
+                  id="about-title"
+                  className="relative text-[clamp(4rem,7vw,7rem)] font-black italic uppercase leading-[0.9] tracking-[-0.075em] text-[#f2f0e8]"
+                >
+                  SOBRE
+                </h2>
+              </div>
 
-                        <p className="border-l border-white/20 pl-5 text-sm font-light italic text-zinc-400 md:text-lg">
-                            Acredito que um bom código deve ser acompanhado de uma experiência visual impecável. Meu objetivo é construir interfaces que não apenas funcionem, mas que também encantem quem as utiliza.
-                        </p>
-                    </div>
+              <p className="mt-5 text-[10px] font-extrabold uppercase tracking-[0.25em] text-[#b5df24] sm:text-xs sm:tracking-[0.35em]">
+                Vitória Pereira / Portfólio
+              </p>
+            </header>
 
-                    <div className="mt-8 flex justify-center md:justify-start">
-                        <motion.a
-                            href="/curriculo-vitoria.pdf"
-                            download="Curriculo_Vitoria.pdf"
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-xs md:text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-[0_4px_20px_rgba(245,158,11,0.3)] hover:shadow-[0_4px_25px_rgba(245,158,11,0.5)] transition-all cursor-pointer"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={2.5}
-                                stroke="currentColor"
-                                className="w-4 h-4 md:w-5 md:h-5"
-                            >
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                            </svg>
-                            Baixar Currículo
-                        </motion.a>
-                    </div>
+            <div className="space-y-7">
+              <p className="border-l-[3px] border-[#b5df24] pl-5 text-base font-normal leading-[1.75] text-[#f1f0e9] sm:text-lg lg:text-xl">
+                Sou Vitória, estudante de Desenvolvimento de
+                Sistemas na{" "}
+                <strong className="font-bold text-[#b5df24]">
+                  FATEC Ipiranga.
+                </strong>{" "}
+                Minha missão é traduzir conceitos complexos
+                em interfaces memoráveis.
+              </p>
 
-                    <footer className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
-                        <div className="flex items-center gap-3">
-                            <span className="relative flex h-2.5 w-2.5" aria-hidden="true">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-40" />
-                                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-amber-400" />
-                            </span>
-                            <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-orange-100">
-                                Status: Disponível para novos desafios
-                            </span>
-                        </div>
-                    </footer>
-                </motion.div>
+              <p className="ml-1 border-l border-[#a4c639]/40 pl-5 text-sm font-light italic leading-[1.9] text-[#a5a5a0] sm:text-base lg:text-lg">
+                Acredito que um bom código deve ser acompanhado
+                de uma experiência visual impecável. Meu objetivo
+                é construir interfaces que não apenas funcionem,
+                mas que também encantem quem as utiliza.
+              </p>
             </div>
-        </section>
-    )
+
+            <div className="mt-9 flex flex-wrap items-center gap-4">
+              <motion.a
+                href="/curriculo-vitoria.pdf"
+                download="Curriculo_Vitoria.pdf"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-gradient-to-r from-[#c3e62b] to-[#779b22] px-7 py-3.5 text-sm font-bold text-[#101506] shadow-[0_8px_30px_rgba(153,196,35,0.2)] transition-shadow duration-300 hover:shadow-[0_8px_35px_rgba(153,196,35,0.4)]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="19"
+                  height="19"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <path d="m7 10 5 5 5-5" />
+                  <path d="M12 15V3" />
+                </svg>
+
+                Baixar currículo
+              </motion.a>
+            </div>
+
+            <footer className="mt-10 border-t border-[#9ab338]/20 pt-6">
+              <div className="flex items-center gap-3">
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#b5df24] opacity-30" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#b5df24]" />
+                </span>
+
+                <span className="text-[10px] font-bold uppercase leading-relaxed tracking-[0.15em] text-[#c2c7b5] sm:tracking-[0.22em]">
+                  Disponível para novos desafios
+                </span>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

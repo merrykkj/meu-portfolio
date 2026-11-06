@@ -1,26 +1,23 @@
 
-"use client";
-
-import { motion } from "framer-motion";
-
 export default function AboutBanner() {
   return (
-    <>
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden h-full md:block">
-        <motion.img
-          src="/zenitsu7.png"
-          alt=""
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 0.85, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.3, ease: "easeOut" }}
-          className="block h-full w-auto max-w-none object-contain"
-        />
-      </div>
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[#080b05]">
+      <div
+        className="absolute inset-0 bg-cover bg-[35%_center] bg-no-repeat sm:bg-[30%_center] lg:bg-center"
+        style={{
+          backgroundImage: "url('/gyuntaro.png')",
+        }}
+      />
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-40 bg-gradient-to-b from-black/90 via-black/40 to-transparent md:h-52" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#080b05]/10 to-[#080b05]/35" />
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-40 bg-gradient-to-t from-black/90 via-black/40 to-transparent md:h-52" />
-    </>
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080b05]/90 to-transparent" />
+
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#080b05]/95 to-transparent" />
+
+      <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#080b05]/40 to-transparent" />
+
+      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#080b05]/70 to-transparent" />
+    </div>
   );
 }

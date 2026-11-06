@@ -17,6 +17,8 @@ export default function Banner() {
 
       <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#100711]/85 to-transparent" />
 
+      <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-[#100711] via-[#100711]/75 via-30% to-transparent" />
+
       <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#100711]/30 to-transparent" />
     </div>
   );
