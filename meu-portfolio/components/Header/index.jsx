@@ -1,86 +1,133 @@
-'use client'
-import { useState, useEffect } from 'react'
+
+"use client";
+
+import { useState, useEffect } from "react";
+
+const sections = ["hero", "sobre", "projetos", "contato"];
+
+const colors = {
+  hero: "hover:text-red-500 hover:drop-shadow-[0_0_10px_#ef4444]",
+  sobre: "hover:text-orange-500 hover:drop-shadow-[0_0_10px_#f97316]",
+  projetos: "hover:text-pink-500 hover:drop-shadow-[0_0_10px_#ec4899]",
+  contato: "hover:text-purple-500 hover:drop-shadow-[0_0_10px_#a855f7]"
+};
 
 export default function Header() {
-  const [activeSection, setActiveSection] = useState('hero')
-  const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("hero");
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id)
-        })
-      },
-      { threshold: 0.5 }
-    )
+    function updateSection() {
+      const position = window.scrollY + window.innerHeight * 0.35;
+      let currentSection = "hero";
 
-    const sections = ['hero', 'sobre', 'contato', 'projetos']
-    sections.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+      sections.forEach((id) => {
+        const element = document.getElementById(id);
 
-    return () => observer.disconnect()
-  }, [])
+        if (element) {
+          const top = element.getBoundingClientRect().top + window.scrollY;
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setIsOpen(false)
+          if (position >= top) {
+            currentSection = id;
+          }
+        }
+      });
+
+      setActiveSection(currentSection);
     }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
-  const colors = {
-    hero: 'hover:text-purple-500 hover:drop-shadow-[0_0_10px_#a855f7]',
-    sobre: 'hover:text-yellow-400 hover:drop-shadow-[0_0_10px_#facc15]',
-    contato: 'hover:text-purple-500 hover:drop-shadow-[0_0_10px_#ec4899]',
-    projetos: 'hover:text-pink-500 hover:drop-shadow-[0_0_10px_#ec4899]'
-  }
+    updateSection();
 
-  const hoverStyle = colors[activeSection]
+    window.addEventListener("scroll", updateSection, { passive: true });
+    window.addEventListener("resize", updateSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateSection);
+      window.removeEventListener("resize", updateSection);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        setIsOpen(false);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const hoverStyle = colors[activeSection] || colors.hero;
 
   return (
-    <header className="fixed top-0 left-0 w-full md:h-12 py-3 backdrop-blur-md z-[999] bg-black/50 transition-all duration-300">
-      <nav aria-label="Navegação principal" className="container mx-auto px-6 flex items-center justify-between md:justify-center">
-        
-
+    <header className="fixed top-0 left-0 z-[999] w-full bg-black/50 py-3 backdrop-blur-md transition-all duration-300 md:h-12">
+      <nav
+        aria-label="Navegação principal"
+        className="container mx-auto flex items-center justify-between px-6 md:justify-center"
+      >
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
           aria-expanded={isOpen}
-          className="flex flex-col justify-center items-center gap-1.5 w-8 h-8 rounded md:hidden text-white focus:outline-none z-50 relative"
+          className="relative z-50 flex h-8 w-8 flex-col items-center justify-center gap-1.5 rounded text-white focus:outline-none md:hidden"
         >
-          <span className={`h-0.5 w-6 bg-white rounded-full transition-all duration-300 origin-center ${isOpen ? 'rotate-45 translate-y-2' : ''}`} />
-          <span className={`h-0.5 w-6 bg-white rounded-full transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`} />
-          <span className={`h-0.5 w-6 bg-white rounded-full transition-all duration-300 origin-center ${isOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          <span
+            className={`h-0.5 w-6 origin-center rounded-full bg-white transition-all duration-300 ${
+              isOpen ? "translate-y-2 rotate-45" : ""
+            }`}
+          />
+
+          <span
+            className={`h-0.5 w-6 rounded-full bg-white transition-all duration-300 ${
+              isOpen ? "opacity-0" : ""
+            }`}
+          />
+
+          <span
+            className={`h-0.5 w-6 origin-center rounded-full bg-white transition-all duration-300 ${
+              isOpen ? "-translate-y-2 -rotate-45" : ""
+            }`}
+          />
         </button>
 
-        <ul className={`
-          flex flex-col md:flex-row items-center justify-center gap-8 md:gap-7 text-white font-[family-name:var(--font-shojumaru)] text-lg md:text-base
-          fixed inset-0 bg-black/95 md:bg-transparent md:static 
-          w-full h-screen md:h-auto transition-all duration-300 ease-in-out
-          ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none md:opacity-100 md:pointer-events-auto'}
-        `}>
-          {['home', 'sobre', 'projetos', 'contato'].map((item) => {
-            const isActive = item === 'home' ? activeSection === 'hero' : activeSection === item;
+        <ul
+          className={`
+            fixed inset-0 flex h-screen w-full flex-col items-center justify-center
+            gap-8 bg-black/95 text-lg text-white
+            font-[family-name:var(--font-shojumaru)]
+            transition-all duration-300 ease-in-out
+            md:static md:h-auto md:w-auto md:flex-row md:gap-7
+            md:bg-transparent md:text-base
+            ${
+              isOpen
+                ? "pointer-events-auto opacity-100"
+                : "pointer-events-none opacity-0 md:pointer-events-auto md:opacity-100"
+            }
+          `}
+        >
+          {["home", "sobre", "projetos", "contato"].map((item) => {
+            const isActive =
+              item === "home"
+                ? activeSection === "hero"
+                : activeSection === item;
 
             return (
               <li key={item} className="w-full text-center md:w-auto">
                 <a
-                  href={item === 'home' ? '/' : `#${item}`}
-                  aria-current={isActive ? 'page' : undefined}
+                  href={item === "home" ? "/" : `#${item}`}
+                  aria-current={isActive ? "page" : undefined}
                   onClick={() => setIsOpen(false)}
-                  className={`${hoverStyle} transition-all duration-300 hover:scale-110 block capitalize py-2 md:py-0`}
+                  className={`${hoverStyle} block py-2 capitalize transition-all duration-300 hover:scale-110 md:py-0`}
                 >
                   {item}
                 </a>
               </li>
-            )
+            );
           })}
         </ul>
       </nav>
     </header>
-  )
+  );
 }

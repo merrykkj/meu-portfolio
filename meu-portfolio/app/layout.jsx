@@ -1,6 +1,6 @@
 
 import "./globals.css";
-import { Inter, Shojumaru } from "next/font/google";
+import { Inter, Shojumaru, Cinzel } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,6 +11,13 @@ const shojumaru = Shojumaru({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-shojumaru"
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cinzel",
+  display: "swap"
 });
 
 export const metadata = {
@@ -41,7 +48,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body className={`${inter.variable} ${shojumaru.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${shojumaru.variable} ${cinzel.variable} antialiased`}
+      >
         {children}
       </body>
     </html>

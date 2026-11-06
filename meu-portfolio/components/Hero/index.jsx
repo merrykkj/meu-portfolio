@@ -1,106 +1,128 @@
-'use client'
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+"use client";
+
+const tecnologias = [
+  { nome: "Next.js", imagem: "/nextjs.svg" },
+  { nome: "React", imagem: "/react.svg" },
+  { nome: "Tailwind CSS", imagem: "/tailwindcss.svg" },
+  { nome: "Node.js", imagem: "/nodejs.svg" },
+  { nome: "JavaScript", imagem: "/javascript.svg" },
+  { nome: "Java", imagem: "/java.png" }
+];
+
+function BotaoOrnamental({ href, children, principal = false }) {
+  return (
+    <a
+      href={href}
+      className="group relative flex h-[56px] w-full max-w-[235px] items-center justify-center transition-transform duration-300 hover:-translate-y-1"
+    >
+      <svg
+        className="absolute inset-0 h-full w-full"
+        viewBox="0 0 270 68"
+        preserveAspectRatio="none"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M23 2 H247 L254 9 H260 V15 L268 23 V45 L260 53 V59 H254 L247 66 H23 L16 59 H10 V53 L2 45 V23 L10 15 V9 H16 Z"
+          fill={principal ? "#52091a" : "#190c20"}
+          fillOpacity="0.85"
+          stroke={principal ? "#ff4a60" : "#c96b93"}
+          strokeWidth="1.3"
+        />
+        <path
+          d="M30 7 H240 M30 61 H240"
+          stroke={principal ? "#ff6075" : "#b66589"}
+          strokeOpacity="0.65"
+          strokeWidth="0.7"
+        />
+        <path
+          d="M2 34 L12 24 L22 34 L12 44 Z"
+          fill={principal ? "#d92d49" : "#9b426b"}
+          stroke="#ff9aa9"
+          strokeWidth="0.6"
+        />
+        <path
+          d="M268 34 L258 24 L248 34 L258 44 Z"
+          fill={principal ? "#d92d49" : "#9b426b"}
+          stroke="#ff9aa9"
+          strokeWidth="0.6"
+        />
+        <path
+          d="M135 0 L139 4 L135 8 L131 4 Z"
+          fill={principal ? "#ff536a" : "#c26a91"}
+        />
+        <path
+          d="M135 60 L139 64 L135 68 L131 64 Z"
+          fill={principal ? "#ff536a" : "#c26a91"}
+        />
+      </svg>
+
+      <span className="relative z-10 font-cinzel text-[16px] font-medium text-[#fff0f4] sm:text-[18px]">
+        {children}
+      </span>
+    </a>
+  );
+}
 
 export default function Hero() {
-  const [text, setText] = useState('');
-  const fullText = "Desenvolvedora de Software";
-
-  useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setText(fullText.slice(0, i));
-      i++;
-      if (i > fullText.length) clearInterval(interval);
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="relative flex w-full min-h-screen items-center px-6 md:px-12 py-20 overflow-hidden">
+      <div className="relative z-10 flex w-full flex-col items-center text-center lg:w-1/2">
 
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: [0, 0.5, 0], y: -150, x: [0, 30, -30, 0] }}
-            transition={{ duration: 6 + i, repeat: Infinity, delay: i * 1.5 }}
-            className="absolute w-3 h-3 bg-purple-400 rounded-full blur-[2px]"
-            style={{ left: `${Math.random() * 100}%`, bottom: '5%' }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 flex flex-col gap-4 max-w-3xl w-full items-center md:items-start text-center md:text-left">
-        <motion.h1
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-black text-white tracking-tight drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]"
-        >
+        <h1 className="w-full font-cinzel text-[clamp(2.5rem,4.5vw,5rem)] font-normal leading-[1.2] tracking-[-0.055em] text-[#fff1f4] [text-shadow:0_0_16px_rgba(255,180,200,0.25),0_5px_20px_rgba(0,0,0,0.5)]">
           Vitória Pereira
-        </motion.h1>
+        </h1>
 
-        <div className="min-h-[60px] flex items-center" aria-live="polite">
-          <p className="text-xl md:text-3xl text-purple-200 font-light uppercase tracking-[0.2em] drop-shadow-md">
-            {text}
-          </p>
-          <span className="inline-block w-[2px] h-[25px] md:h-[35px] bg-purple-400 ml-2 animate-pulse shadow-[0_0_15px_#a855f7]" />
-        </div>
+        <div className="mt-7 flex w-full items-center justify-center gap-4">
+          <span className="h-10 w-[2px] shrink-0 bg-[#f04462]" />
 
-        <nav className="flex flex-wrap justify-center md:justify-start gap-5 mt-6">
-          <a
-            href="#projetos"
-            className="bg-purple-600 text-white font-bold px-10 py-4 rounded-full hover:bg-purple-500 transition-all shadow-[0_10px_25px_rgba(147,51,234,0.4)] hover:scale-105 active:scale-95"
-          >
-            Ver projetos
-          </a>
-          <a
-            href="#sobre"
-            className="bg-white/5 backdrop-blur-md border border-white/20 text-white px-10 py-4 rounded-full hover:bg-white/10 transition-all hover:border-white/40"
-          >
-            Sobre mim
-          </a>
-        </nav>
-
-        <div className="mt-16 flex flex-col items-center md:items-start w-full">
-          <h2 className="text-[12px] uppercase tracking-[0.4em] text-purple-300/80 font-bold mb-8">
-            Main Stack & Software Focus
+          <h2 className="font-cinzel text-[clamp(0.75rem,1.25vw,1.1rem)] font-medium uppercase leading-relaxed tracking-[0.13em] text-[#fff0f4] sm:tracking-[0.18em]">
+            Desenvolvedora de Software
           </h2>
 
-          <ul className="flex flex-row justify-center md:justify-start gap-4 md:gap-10 items-center list-none p-0 w-full">
-            {[
-              { name: 'Next.js', src: '/nextjs.svg' },
-              { name: 'React', src: '/react.svg' },
-              { name: 'Tailwind CSS', src: '/tailwindcss.svg' },
-              { name: 'Node.js', src: '/nodejs.svg' },
-              { name: 'JavaScript', src: '/javascript.svg' }
-            ].map((tech) => (
-              <li key={tech.name}>
-                <motion.img
-                  src={tech.src}
-                  alt={`Logo ${tech.name}`}
-                  title={tech.name}
-                  whileHover={{ scale: 1.25, y: -5 }}
-                  className="h-6 md:h-9 invert opacity-75 hover:invert-0 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
+          <span className="h-10 w-[2px] shrink-0 bg-[#f04462]" />
+        </div>
+
+        <nav className="mt-10 flex w-full flex-wrap items-center justify-center gap-5">
+          <BotaoOrnamental href="#projetos" principal>
+            Ver projetos
+          </BotaoOrnamental>
+
+          <BotaoOrnamental href="#sobre">
+            Sobre mim
+          </BotaoOrnamental>
+        </nav>
+
+        <div className="mt-14 w-full max-w-[590px]">
+          <h3 className="font-cinzel text-center text-[11px] font-medium uppercase tracking-[0.18em] text-[#f3d3e6] sm:text-[13px] sm:tracking-[0.25em]">
+            Main Stack & Software Focus
+          </h3>
+
+          <div className="mt-5 flex w-full items-center justify-center gap-4">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-[#d45b83]/70" />
+
+            <span className="text-lg leading-none text-[#ffc3d8]">
+              ❀
+            </span>
+
+            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-[#d45b83]/70" />
+          </div>
+
+          <ul className="mt-7 grid w-full grid-cols-3 items-center justify-items-center gap-x-4 gap-y-6 sm:grid-cols-6 sm:gap-x-5">
+            {tecnologias.map((tech) => (
+              <li
+                key={tech.nome}
+                className="flex h-[38px] w-[38px] items-center justify-center"
+              >
+                <img
+                  src={tech.imagem}
+                  alt={tech.nome}
+                  title={tech.nome}
+                  className="h-[30px] w-[30px] object-contain brightness-0 invert opacity-90 transition-all duration-300 hover:scale-110 hover:opacity-100 hover:drop-shadow-[0_0_10px_rgba(255,120,180,0.7)] sm:h-[34px] sm:w-[34px]"
                 />
               </li>
             ))}
-
-            <li className="relative flex flex-col items-center group">
-              <span className="absolute -top-5 text-[9px] bg-purple-600 px-2 py-0.5 rounded-full text-white font-black shadow-md border border-purple-400 animate-bounce z-20 whitespace-nowrap">
-                START
-              </span>
-              <motion.img
-                src="/java.png"
-                alt="Logo Java"
-                title="Estudando Java"
-                whileHover={{ scale: 1.25, y: -5 }}
-                className="h-6 md:h-9 opacity-50 hover:opacity-100 transition-all cursor-pointer filter hover:drop-shadow-[0_0_15px_rgba(168,85,247,0.9)]"
-              />
-            </li>
           </ul>
         </div>
       </div>
