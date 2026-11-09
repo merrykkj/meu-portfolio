@@ -13,10 +13,10 @@ export default function About() {
     >
       <AboutBanner />
 
-      <div className="relative z-10 mx-auto grid min-h-[100svh] w-full max-w-[1900px] grid-cols-1 items-center px-4 py-20 sm:px-8 md:grid-cols-2 md:gap-5 md:px-8 lg:grid-cols-[1fr_1.05fr] lg:px-12 xl:gap-10 xl:px-16">
-        <div className="hidden md:block" />
+      <div className="relative z-10 mx-auto grid min-h-[100svh] w-full max-w-[1900px] grid-cols-1 items-center justify-items-center px-4 py-20 sm:px-8 lg:grid-cols-[1fr_1.05fr] lg:justify-items-stretch lg:gap-5 lg:px-12 xl:gap-10 xl:px-16">
+        <div className="hidden lg:block" />
 
-        <div className="relative isolate w-full min-w-0 overflow-hidden border border-[#667d30]/25 bg-[#080a06]/95 px-6 py-10 shadow-[0_25px_90px_rgba(0,0,0,0.6)] sm:px-9 sm:py-12 md:rounded-[2.5rem] md:bg-[#080a06]/90 lg:px-12 lg:py-14 xl:px-14">
+        <div className="relative isolate w-full max-w-[650px] min-w-0 overflow-hidden rounded-[2rem] border border-[#667d30]/25 bg-[#080a06]/95 px-6 py-10 shadow-[0_25px_90px_rgba(0,0,0,0.6)] sm:px-9 sm:py-12 md:rounded-[2.5rem] md:bg-[#080a06]/90 lg:max-w-none lg:px-12 lg:py-14 xl:px-14">
           <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-[#18200c]/35 via-transparent to-[#0b0e07]/60" />
 
           <div
@@ -37,9 +37,9 @@ export default function About() {
             }}
           />
 
-          <div className="pointer-events-none absolute left-0 top-0 h-24 w-24 border-l border-t border-[#a4c639]/30 md:rounded-tl-[2.5rem]" />
+          <div className="pointer-events-none absolute left-0 top-0 h-24 w-24 rounded-tl-[2rem] border-l border-t border-[#a4c639]/30 md:rounded-tl-[2.5rem]" />
 
-          <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-24 border-b border-r border-[#a4c639]/20 md:rounded-br-[2.5rem]" />
+          <div className="pointer-events-none absolute bottom-0 right-0 h-24 w-24 rounded-br-[2rem] border-b border-r border-[#a4c639]/20 md:rounded-br-[2.5rem]" />
 
           <div className="relative z-10">
             <header className="mb-9">

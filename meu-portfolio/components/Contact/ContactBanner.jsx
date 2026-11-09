@@ -1,8 +1,16 @@
+
 export default function ContactBanner() {
     return (
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
             <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
+                style={{
+                    backgroundImage: "url('/douma-contato5.png')"
+                }}
+            />
+
+            <div
+                className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat lg:block"
                 style={{
                     backgroundImage: "url('/douma-contato4.png')"
                 }}

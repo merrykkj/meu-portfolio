@@ -36,11 +36,10 @@ const projects = [
 function ProjectPreview({ project, priority = false, modal = false }) {
   return (
     <div
-      className={`relative isolate w-full overflow-hidden bg-[#180817] ${
-        modal
-          ? "aspect-[16/10] rounded-2xl border border-[#ff7ab8]/25"
-          : "h-full min-h-[240px] sm:min-h-[300px] md:min-h-[340px]"
-      }`}
+      className={`relative isolate w-full overflow-hidden bg-[#180817] ${modal
+        ? "aspect-[16/10] rounded-2xl border border-[#ff7ab8]/25"
+        : "h-full min-h-[240px] sm:min-h-[300px] md:min-h-[340px]"
+        }`}
     >
       <Image
         src={project.image}
@@ -56,9 +55,8 @@ function ProjectPreview({ project, priority = false, modal = false }) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_20%,rgba(12,3,15,0.55)_100%)]" />
 
       <div
-        className={`absolute inset-0 flex items-center justify-center ${
-          modal ? "p-3 sm:p-5" : "p-5 sm:p-7 lg:p-8"
-        }`}
+        className={`absolute inset-0 flex items-center justify-center ${modal ? "p-3 sm:p-5" : "p-5 sm:p-7 lg:p-8"
+          }`}
       >
         <div className="relative w-full max-w-[650px] overflow-hidden rounded-xl border border-white/15 bg-[#130712] shadow-[0_20px_55px_rgba(0,0,0,0.5)] transition-transform duration-500 group-hover:scale-[1.025]">
           <div className="flex h-7 items-center gap-2 border-b border-white/10 bg-[#210d20] px-3">
@@ -121,10 +119,27 @@ export default function Projects() {
 
   return (
     <>
+
       <section
         id="projetos"
-        className="relative isolate min-h-screen w-full bg-[#190819] bg-[url('/akaza-projetos3.png')] bg-cover bg-[35%_center] bg-no-repeat text-white"
+        className="relative isolate min-h-screen w-full overflow-hidden bg-[#190819] text-white"
       >
+
+        <div
+          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat lg:hidden"
+          style={{
+            backgroundImage: "url('/akaza-projetos4.png')",
+          }}
+        />
+
+        <div
+          className="pointer-events-none absolute inset-0 z-0 hidden bg-cover bg-[35%_center] bg-no-repeat lg:block"
+          style={{
+            backgroundImage: "url('/akaza-projetos3.png')",
+          }}
+        />
+
+
         <div className="pointer-events-none absolute inset-x-0 top-0 z-0 h-40 bg-gradient-to-b from-[#080310] via-[#080310]/75 to-transparent sm:h-56 lg:h-72" />
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-48 bg-gradient-to-t from-[#080310] via-[#080310]/75 to-transparent sm:h-56 lg:h-72" />

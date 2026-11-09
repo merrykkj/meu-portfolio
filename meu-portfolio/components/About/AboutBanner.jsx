@@ -1,8 +1,16 @@
+
 export default function AboutBanner() {
     return (
         <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[#080b05]">
             <div
-                className="absolute inset-0 bg-cover bg-[35%_center] bg-no-repeat sm:bg-[30%_center] lg:bg-center"
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat lg:hidden"
+                style={{
+                    backgroundImage: "url('/gyuntaro2.png')",
+                }}
+            />
+
+            <div
+                className="absolute inset-0 hidden bg-cover bg-center bg-no-repeat lg:block"
                 style={{
                     backgroundImage: "url('/gyuntaro.png')",
                 }}
